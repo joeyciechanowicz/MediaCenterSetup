@@ -13,7 +13,10 @@ Steps:
 1. Open Radarr http://YOUR_IP:7878/ and repeat the steps for Sonarr, except when you add a path set it to `/movies/`
 1. Open Plex http://YOUR_IP:32400/web/index.html and libraries, Movies path is `/data/movies/` and TV path is `/data/tv/`
 
-_Note: This assumes you have one user who's PGID/PUID is 1000. Change this as needed if you arne't using the first user created_
+### Notes
+This assumes you have one user who's PGID/PUID is 1000. Change this as needed if you arne't using the first user created
+
+If you don't want to use `net=host` for Plex, the ports you need to open are at the bottom.
 
 ### Problems
 For some reason Radarr downloads files though transmission as root rather than as the normal user. So you need to regularily `chown -R user:user $MOUNT_POINT/transmission/completed`, not sure how to fix this.
