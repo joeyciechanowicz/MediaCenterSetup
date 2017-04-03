@@ -1,6 +1,8 @@
 ## Docker based setup for running plex, sonarr and radarr. Downloads handled by transmission through a VPN
 
 Steps:
+1. Install docker https://docs.docker.com/engine/installation/#platform-support-matrix
+1. Run `git clone https://github.com/bodyloss/MediaCenterSetup`
 1. Edit `create-docker-containers` and set the mount point and vpn username/password. See https://github.com/haugene/docker-transmission-openvpn for how to setup the VPN container.
 1. Run `./MediaCenterSetup/create-docker-containers`
 1. Run `./MediaCenterSetup/start-docker`
