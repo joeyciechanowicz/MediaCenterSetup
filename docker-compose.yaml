@@ -19,3 +19,20 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${MOUNT_POINT}/transmission:/data
+
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr:latest
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TIME_ZONE}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${MOUNT_POINT}/radarr-config:/config
+      - ${MOUNT_POINT}/transmission/completed:/downloads
+      - ${MOUNT_POINT}/plex/movies:/movies
+    depends_on:
+      - transmission
