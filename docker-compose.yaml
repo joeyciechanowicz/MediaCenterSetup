@@ -66,3 +66,12 @@ services:
     volumes:
       - ${MOUNT_POINT}/jackett/config/:/config
       - ${MOUNT_POINT}/jackett/downloads/:/downloads
+
+  plex:
+    container_name: plex
+    image: timhaak/plex:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - ${MOUNT_POINT}/plex-config/:/config
+      - ${MOUNT_POINT}/plex/:/data
