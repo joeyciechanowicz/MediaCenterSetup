@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  transmission:
+    container_name: transmission
+    image: haugene/transmission-openvpn:latest
+    privileged: true
+    restart: always
+    ports:
+      - 9091:9091
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - OPENVPN_PROVIDER=${VPN_PROVIDER}
+      - OPENVPN_CONFIG=${VPN_CONFIG}
+      - OPENVPN_USERNAME=${VPN_USERNAME}
+      - OPENVPN_PASSWORD=${VPN_PASSWORD}
+      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${MOUNT_POINT}/transmission:/data
