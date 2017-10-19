@@ -1,7 +1,0 @@
-#!/bin/bash
-
-docker start transmission
-docker start sonarr
-docker start radarr
-docker start jackett
-docker start plex

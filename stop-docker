@@ -1,7 +1,0 @@
-#!/bin/bash
-
-docker stop transmission
-docker stop sonarr
-docker stop radarr
-docker stop jackett
-docker stop plex
