@@ -2,10 +2,10 @@
 
 Steps:
 1. Install docker https://docs.docker.com/engine/installation/#platform-support-matrix
+1. Install docker-compose https://docs.docker.com/compose/install/
 1. Run `git clone https://github.com/bodyloss/MediaCenterSetup`
-1. Edit `create-docker-containers` and set the mount point and vpn username/password. See https://github.com/haugene/docker-transmission-openvpn for how to setup the VPN container.
-1. Run `./MediaCenterSetup/create-docker-containers`
-1. Run `./MediaCenterSetup/start-docker`
+1. `cd ./MediaCenterSetup`
+1. Run `TIME_ZONE= "Europe/London" MOUNT_POINT="/mnt/volume-fra1-01" VPN_PROVIDER="NORDVPN" VPN_CONFIG="UK" VPN_USERNAME="username" VPN_PASSWORD="password" docker-compose up -d`
 1. Open Jackett http://YOUR_IP:9117/Admin/Dashboard and add a tracker to use, click "Copy torznab feed" and save this for the next step.
 1. Open Sonarr http://YOUR_IP:8989/
     1. Add a downloadclient of type transmission. The transmission docker container doesn't have a public URL as all traffic goes through VPN. You can use the internal docker network though. To get the IP address run `docker inspect transmission | grep \"IPAddress\"`, port is 9091
@@ -17,8 +17,6 @@ Steps:
 
 ### Notes
 This assumes you have one user who's PGID/PUID is 1000. Change this as needed if you arne't using the first user created
-
-If you don't want to use `net=host` for Plex, the ports you need to open are at the bottom.
 
 ### Problems
 For some reason Radarr downloads files though transmission as root rather than as the normal user. So you need to regularily `chown -R user:user $MOUNT_POINT/transmission/completed`, not sure how to fix this.
